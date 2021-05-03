@@ -18,24 +18,40 @@ export default function NewItemDialog(props) {
         <DialogTitle id="form-dialog-title">New Item</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            To add a new item, please enter the new item's information below. The item title is required, all other fields are optional.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
+            id="title"
+            label="Item Title"
+            type="title"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="priority"
+            label="Item Priority"
+            type="priority"
+            fullWidth
+          />
+          <TextField
+            id="notes"
+            label="Item Notes"
+            multiline
+            rows={4}
+            defaultValue=""
+            variant="outlined"
             fullWidth
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="secondary" variant="contained">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button onClick={handleClose} color="primary" variant="contained">
+            Add New Item
           </Button>
         </DialogActions>
       </Dialog>

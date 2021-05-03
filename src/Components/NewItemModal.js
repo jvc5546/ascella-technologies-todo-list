@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
 export default function NewItemModal(props) {
   const classes = useStyles();
 
+  const handleNewItem = () => {
+    //declare newItem object
+    //Pull input values into object
+    //Pass object into the App's state
+    //Close modal
+    props.setClose();
+  }
+
   return (
     <div>
       <Modal
@@ -37,7 +45,7 @@ export default function NewItemModal(props) {
           <p id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
-          <Button
+          <Button onClick={handleNewItem}
           variant="contained"
           color="primary"
           size="large"
@@ -46,7 +54,7 @@ export default function NewItemModal(props) {
           >
             Add Item
           </Button>
-          <Button
+          <Button onClick={props.setClose}
           variant="contained"
           color="secondary"
           size="large"
