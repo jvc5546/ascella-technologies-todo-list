@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 import AppBar from './Components/AppBar';
-import NewItemModal from './Components/NewItemModal'
+import NewItemDialog from './Components/NewItemDialog';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -40,7 +40,7 @@ function App() {
       >
         Add New Item
       </Button>
-      <NewItemModal open={openNewItemModal} setClose={handleCloseNewItemModal}/>
+      <NewItemDialog open={openNewItemModal} setClose={handleCloseNewItemModal}/>
     </div>
   );
 }
