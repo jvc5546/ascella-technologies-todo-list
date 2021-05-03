@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import CancelIcon from '@material-ui/icons/Cancel';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -11,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  button: {
+    float: 'right',
+    padding: theme.spacing(1, 1, 1, 1),
+    margin: theme.spacing(1)
+  }
 }));
 
 export default function NewItemModal(props) {
@@ -25,10 +33,28 @@ export default function NewItemModal(props) {
         aria-describedby="simple-modal-description"
       >
         <div className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
+          <h2 id="simple-modal-title">New Item</h2>
           <p id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
+          <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          startIcon={<AddIcon />}
+          >
+            Add Item
+          </Button>
+          <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          className={classes.button}
+          startIcon={<CancelIcon />}
+          >
+            Cancel
+          </Button>
         </div>
       </Modal>
     </div>
