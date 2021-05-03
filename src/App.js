@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 import AppBar from './Components/AppBar';
-import NewTaskModal from './Components/NewTaskModal'
+import NewItemModal from './Components/NewItemModal'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -13,34 +13,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const [openNewTaskModal, setOpenNewTaskModal] = useState(false);
-  const [taskList, setTaskList] = useState([]);
+  const [openNewItemModal, setOpenNewItemModal] = useState(false);
+  const [itemList, setItemList] = useState([]);
   const classes = useStyles();
 
-  const handleOpenNewTaskModal = () => {
-    setOpenNewTaskModal(true);
+  const handleOpenNewItemModal = () => {
+    setOpenNewItemModal(true);
   }
 
-  const handleCloseNewTaskModal = () => {
-    setOpenNewTaskModal(false);
+  const handleCloseNewItemModal = () => {
+    setOpenNewItemModal(false);
   }
   return (
     <div className="App">
       <AppBar/>
-      {taskList.size > 0
+      {itemList.size > 0
         ? <div>Hello</div>
         : <div>There are currently no items on the TODO list.</div>
       }
-      <Button onClick={handleOpenNewTaskModal}
+      <Button onClick={handleOpenNewItemModal}
         variant="contained"
         color="primary"
         size="large"
         className={classes.button}
         startIcon={<AddBoxOutlinedIcon />}
       >
-        Add New Task
+        Add New Item
       </Button>
-      <NewTaskModal open={openNewTaskModal} setClose={handleCloseNewTaskModal}/>
+      <NewItemModal open={openNewItemModal} setClose={handleCloseNewItemModal}/>
     </div>
   );
 }
