@@ -120,7 +120,7 @@ export default function Item (props) {
                 Edit Item
               </Button>
               <Button color="primary" variant="contained" className={classes.button} style={{ background: green[500] }} size="large" onClick={handleOpenCompleteItemModal}>
-                Complete
+                {props.completed ? "Undo Item" : "Complete"}
               </Button>
             </Grid>
           </Grid>
