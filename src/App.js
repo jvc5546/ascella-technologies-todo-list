@@ -6,6 +6,8 @@ import './App.css';
 import AppBar from './Components/AppBar';
 import NewItemDialog from './Components/NewItemDialog';
 import Item from './Components/Item';
+import RemoveCompletedItemsDialog from './Components/RemoveCompletedItemsDialog';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -15,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const [openNewItemModal, setOpenNewItemModal] = useState(false);
+  const [openRemoveCompletedModal, setOpenRemoveCompletedModal] = useState(false);
   const [itemList, setItemList] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
@@ -25,6 +28,15 @@ function App() {
 
   const handleCloseNewItemModal = () => {
     setOpenNewItemModal(false);
+  }
+
+  const handleOpenRemoveCompletedModal = () => {
+    setOpenRemoveCompletedModal(true);
+  }
+
+
+  const handleCloseRemoveCompletedModal = () => {
+    setOpenRemoveCompletedModal(false);
   }
 
   const handlePanelChange = (panel) => (event, isExpanded) => {
@@ -58,6 +70,13 @@ function App() {
     setExpanded(false);
   }
 
+  const handleRemoveCompletedConfirmation = () => {
+    let newList = itemList.filter((item) => !item.completed);
+    setItemList(newList);
+    handleCloseRemoveCompletedModal();
+    setExpanded(false);
+  }
+
   return (
     <div className="App">
       <AppBar/>
@@ -74,7 +93,19 @@ function App() {
       >
         Add New Item
       </Button>
+      <Button onClick={handleOpenRemoveCompletedModal}
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        startIcon={<AddBoxOutlinedIcon />}
+        disabled={itemList.filter((item) => item.completed).length <= 0}
+        style={{ background: (itemList.filter((item) => item.completed).length <= 0) ? grey[500] : "#d50000"}}
+      >
+        Remove Completed Items
+      </Button>
       <NewItemDialog open={openNewItemModal} setClose={handleCloseNewItemModal} addItem={handleAddItem}/>
+      <RemoveCompletedItemsDialog open={openRemoveCompletedModal} setClose={handleCloseRemoveCompletedModal} handleRemoveCompletedConfirmation={handleRemoveCompletedConfirmation}/>
     </div>
   );
 }
