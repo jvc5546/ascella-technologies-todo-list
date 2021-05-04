@@ -36,11 +36,11 @@ export default function Item (props) {
 
   return (
     <div>
-      <Accordion>
+      <Accordion expanded={props.expanded === `item${props.index}`} onChange={props.handlePanelChange(`item${props.index}`)}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon fontSize="large"/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls={`item${props.index}-content`}
+          id={`item${props.index}-header"`}
         >
           <Typography className={classes.heading}>{props.title}</Typography>
           {props.priority >= 1 && <PriorityHighIcon color={getPriorityColor()} fontSize="large"/>}
@@ -52,8 +52,8 @@ export default function Item (props) {
             <Grid item xs={12}>
               <Typography>
                 {props.notes.length === 0
-                ? <div>No notes available for this item</div>
-                : <div>{props.notes}</div>
+                ? <i>No notes available for this item</i>
+                : <i>{props.notes}</i>
                 }
               </Typography>
             </Grid>
