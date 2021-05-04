@@ -34,7 +34,7 @@ export default function CompleteItemDialog(props) {
   return (
     <div>
       <Dialog open={props.open} onClose={handleClose} aria-labelledby="complete-item-dialog-title">
-        <DialogTitle id="complete-item-dialog-title">Complete Item Confirmation</DialogTitle>
+        <DialogTitle id="complete-item-dialog-title">{props.completed ? "Undo Item Confirmation" : "Complete Item Confirmation"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {props.completed
@@ -46,7 +46,7 @@ export default function CompleteItemDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleUndoItem} style={{ background: grey[500], color: "white"}} variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
             Cancel
           </Button>
           {props.completed && <Button onClick={handleUndoItem} style={{ background: "#d50000", color: "white"}} variant="contained">
