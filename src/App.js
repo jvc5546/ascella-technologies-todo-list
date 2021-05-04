@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 import AppBar from './Components/AppBar';
 import NewItemDialog from './Components/NewItemDialog';
+import Item from './Components/Item';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -30,12 +31,13 @@ function App() {
     newList.push(item);
     setItemList(newList);
   }
+
   return (
     <div className="App">
       <AppBar/>
-      {itemList.size > 0
-        ? <div>Hello</div>
-        : <div>There are currently no items on the TODO list.</div>
+      {itemList.length === 0
+        ? <div>There are currently no items on the TODO list.</div>
+        : itemList.map((item, index) => <Item key={index}/>)
       }
       <Button onClick={handleOpenNewItemModal}
         variant="contained"
