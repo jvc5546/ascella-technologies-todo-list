@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
+import { green, grey } from '@material-ui/core/colors';
 import DeleteItemDialog from './DeleteItemDialog';
 import EditItemDialog from './EditItemDialog';
 import CompleteItemDialog from './CompleteItemDialog';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')] : {width: 200}
   },
   alertIconts:{
-    [theme.breakpoints.up('md')]: {fontSize: "large"}
+    [theme.breakpoints.up('md')]: {fontSize: 48}
   },
   button: {
     textAlign: 'center',
@@ -39,10 +39,13 @@ export default function Item (props) {
   const classes = useStyles();
 
   const getPriorityColor = () => {
-    if (props.priority <= 2) {
-        return 'disabled';
+    if(props.priority <=1) {
+      return grey[500];
+    } else if (props.priority <= 2) {
+        return "#212121";
     } else if (props.priority === 3) {
-      return 'secondary';
+      // return 'secondary';
+      return "#d50000";
     }
   }
 
@@ -95,14 +98,14 @@ export default function Item (props) {
           id={`item${props.index}-header"`}
         >
           <Typography className={classes.heading} noWrap style={{ textDecoration : props.completed ? 'line-through' : 'none' }} >{props.title}</Typography>
-          {(props.priority >= 1 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
-          {(props.priority >= 2 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
-          {(props.priority === 3 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          {(props.priority >= 1 && !props.completed) && <PriorityHighIcon style={{color: getPriorityColor()}} className={classes.alertIconts}/>}
+          {(props.priority >= 2 && !props.completed) && <PriorityHighIcon style={{color: getPriorityColor()}} className={classes.alertIconts}/>}
+          {(props.priority === 3 && !props.completed) && <PriorityHighIcon style={{color: getPriorityColor()}} className={classes.alertIconts}/>}
         </AccordionSummary>
         <AccordionDetails>
           <Grid container direction="row">
             <Grid item xs={12}>
-              <Typography>
+              <Typography style={{wordWrap: "break-word"}}>
                 {props.notes.length === 0
                 ? <i>No notes available for this item</i>
                 : <i>{props.notes}</i>
