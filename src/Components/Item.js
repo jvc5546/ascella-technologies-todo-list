@@ -15,8 +15,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(34),
+    [theme.breakpoints.up('md')]: {fontSize: 48},
     fontWeight: theme.typography.fontWeightBold,
+  },
+  alertIconts:{
+    [theme.breakpoints.up('md')]: {fontSize: "large"}
   },
   button: {
     textAlign: 'center',
@@ -47,9 +50,9 @@ export default function Item (props) {
           id={`item${props.index}-header"`}
         >
           <Typography className={classes.heading}>{props.title}</Typography>
-          {props.priority >= 1 && <PriorityHighIcon color={getPriorityColor()} fontSize="large"/>}
-          {props.priority >= 2 && <PriorityHighIcon color={getPriorityColor()} fontSize="large"/>}
-          {props.priority === 3 && <PriorityHighIcon color={getPriorityColor()} fontSize="large"/>}
+          {props.priority >= 1 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          {props.priority >= 2 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          {props.priority === 3 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
         </AccordionSummary>
         <AccordionDetails>
           <Grid container direction="row">
