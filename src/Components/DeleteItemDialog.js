@@ -38,7 +38,7 @@ export default function DeleteItemDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[700], color: "white"}} variant="contained">
             Cancel
           </Button>
           <Button onClick={handleDeleteItem} style={{ background: "#d50000", color: "white"}} variant="contained">

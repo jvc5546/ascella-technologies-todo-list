@@ -118,7 +118,7 @@ export default function NewItemDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[700], color: "white"}} variant="contained">
             Cancel
           </Button>
           <Button onClick={handleAddNewItem} style={{ background: green[500], color: "white"}} variant="contained">

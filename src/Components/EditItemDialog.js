@@ -111,10 +111,10 @@ export default function EditItemDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[700], color: "white"}} variant="contained">
             Cancel
           </Button>
-          <Button onClick={handleEditItem} style={{ background: green[500], color: "white"}} variant="contained">
+          <Button onClick={handleEditItem} style={{ background: !(props.title === itemTitle && props.notes === itemNotes && props.priority === itemPriority) ? green[500] : grey[500], color: "white"}} variant="contained" disabled={props.title === itemTitle && props.notes === itemNotes && props.priority === itemPriority}>
             Edit Item
           </Button>
         </DialogActions>

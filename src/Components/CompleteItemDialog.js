@@ -46,7 +46,7 @@ export default function CompleteItemDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[700], color: "white"}} variant="contained">
             Cancel
           </Button>
           {props.completed && <Button onClick={handleUndoItem} style={{ background: "#d50000", color: "white"}} variant="contained">
