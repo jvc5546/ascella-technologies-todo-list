@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { green, grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -116,10 +117,10 @@ export default function NewItemDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="secondary" variant="contained">
+          <Button onClick={handleClose} style={{ background: grey[500], color: "white"}} variant="contained">
             Cancel
           </Button>
-          <Button onClick={handleAddNewItem} color="primary" variant="contained">
+          <Button onClick={handleAddNewItem} style={{ background: green[500], color: "white"}} variant="contained">
             Add New Item
           </Button>
         </DialogActions>
