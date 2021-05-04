@@ -38,7 +38,7 @@ export default function Item (props) {
   }
 
   const handleDelete = () => {
-    props.handleDeleteItem(props.index);
+    props.handleOpenDeleteModal(props.index);
   }
 
   return (
