@@ -30,6 +30,7 @@ export default function NewItemDialog(props) {
   const [itemNotes, setItemNotes] = useState("");
 
   const handleClose = () => {
+    handleReset();
     props.setClose();
   };
 
@@ -38,7 +39,13 @@ export default function NewItemDialog(props) {
     if(!itemTitle || /^\s*$/.test(itemTitle)) {
       setItemTitleError(true);
     } else {
-      //Call Apps function to save a new item
+      let newItem = {
+        title: itemTitle,
+        priority: itemPriority,
+        notes: itemNotes
+      }
+      props.addItem(newItem)
+      handleReset();
       props.setClose();
     }
   }
@@ -53,6 +60,13 @@ export default function NewItemDialog(props) {
 
   const handleNotesChange = (e) => {
     setItemNotes(e.target.value);
+  }
+
+  const handleReset = () => {
+    setItemTitle("");
+    setItemTitleError(false);
+    setItemPriority(0);
+    setItemNotes("");
   }
 
   return (

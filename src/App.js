@@ -24,6 +24,12 @@ function App() {
   const handleCloseNewItemModal = () => {
     setOpenNewItemModal(false);
   }
+
+  const handleAddItem = (item) => {
+    let newList = [...itemList];
+    newList.push(item);
+    setItemList(newList);
+  }
   return (
     <div className="App">
       <AppBar/>
@@ -40,7 +46,7 @@ function App() {
       >
         Add New Item
       </Button>
-      <NewItemDialog open={openNewItemModal} setClose={handleCloseNewItemModal}/>
+      <NewItemDialog open={openNewItemModal} setClose={handleCloseNewItemModal} addItem={handleAddItem}/>
     </div>
   );
 }
