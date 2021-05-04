@@ -34,6 +34,10 @@ export default function Item (props) {
     }
   }
 
+  const handleDelete = () => {
+    props.handleDeleteItem(props.index);
+  }
+
   return (
     <div>
       <Accordion expanded={props.expanded === `item${props.index}`} onChange={props.handlePanelChange(`item${props.index}`)}>
@@ -58,7 +62,7 @@ export default function Item (props) {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Button color="secondary" variant="contained" className={classes.button} style={{ background: "#d50000" }} size="large">
+              <Button color="secondary" variant="contained" className={classes.button} style={{ background: "#d50000" }} size="large" onClick={handleDelete}>
                 Delete Item
               </Button>
               <Button color="primary" variant="contained" className={classes.button} size="large">
