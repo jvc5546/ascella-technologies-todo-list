@@ -9,13 +9,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    minWidth: 120,
-    margin: theme.spacing(1, 0)
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+  itemTitle: {
+    fontWeight: "bold"
+  }
 }));
 
 export default function NewItemDialog(props) {
@@ -26,7 +22,7 @@ export default function NewItemDialog(props) {
   };
 
   const handleDeleteItem = () => {
-    props.deleteItem(props.index);
+    props.handleDeleteConfirmation();
   }
 
   return (
@@ -36,6 +32,9 @@ export default function NewItemDialog(props) {
         <DialogContent>
           <DialogContentText>
             Are you sure you want to permanently delete the following item?
+          </DialogContentText>
+          <DialogContentText className={classes.itemTitle}>
+            {props.title}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

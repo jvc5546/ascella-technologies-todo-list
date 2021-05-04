@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -9,6 +9,7 @@ import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
+import DeleteItemDialog from './DeleteItemDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Item (props) {
+  const [openDeleteItemModal, setOpenDeleteItemModal] = useState(false);
   const classes = useStyles();
   const getPriorityColor = () => {
     if (props.priority <= 2) {
@@ -37,8 +39,17 @@ export default function Item (props) {
     }
   }
 
-  const handleDelete = () => {
-    props.handleOpenDeleteModal(props.index);
+  const handleDeleteConfirmation = () => {
+    props.handleDelete(props.index);
+    handleCloseDeleteItemModal();
+  }
+
+  const handleOpenDeleteItemModal = () => {
+    setOpenDeleteItemModal(true);
+  }
+
+  const handleCloseDeleteItemModal = () => {
+    setOpenDeleteItemModal(false);
   }
 
   return (
@@ -65,7 +76,7 @@ export default function Item (props) {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Button color="secondary" variant="contained" className={classes.button} style={{ background: "#d50000" }} size="large" onClick={handleDelete}>
+              <Button color="secondary" variant="contained" className={classes.button} style={{ background: "#d50000" }} size="large" onClick={handleOpenDeleteItemModal}>
                 Delete Item
               </Button>
               <Button color="primary" variant="contained" className={classes.button} size="large">
@@ -78,6 +89,7 @@ export default function Item (props) {
           </Grid>
         </AccordionDetails>
       </Accordion>
+      <DeleteItemDialog open={openDeleteItemModal} setClose={handleCloseDeleteItemModal} handleDeleteConfirmation={handleDeleteConfirmation} title={props.title}/>
     </div>
   )
 }
