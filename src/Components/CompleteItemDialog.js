@@ -23,10 +23,12 @@ export default function CompleteItemDialog(props) {
 
   const handleCompleteItem = () => {
     props.handleCompleteItemConfirmation(true);
+    handleClose();
   }
 
   const handleUndoItem = () => {
     props.handleCompleteItemConfirmation(false);
+    handleClose();
   }
 
   return (
@@ -47,7 +49,7 @@ export default function CompleteItemDialog(props) {
           <Button onClick={handleUndoItem} style={{ background: grey[500], color: "white"}} variant="contained">
             Cancel
           </Button>
-          {props.completed && <Button onClick={handleCompleteItem} style={{ background: "#d50000", color: "white"}} variant="contained">
+          {props.completed && <Button onClick={handleUndoItem} style={{ background: "#d50000", color: "white"}} variant="contained">
             Undo Item
           </Button>}
           {!props.completed && <Button onClick={handleCompleteItem} style={{ background: "#d50000", color: "white"}} variant="contained">

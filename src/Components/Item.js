@@ -71,10 +71,10 @@ export default function Item (props) {
   }
 
   const handleCompleteItemConfirmation = (completeItem) => {
-    if(completeItem) {
-      //Set state to strike through
-    } else {
-      //Set state to remove strike through
+    if(completeItem && !props.completed) {
+      props.handleCompleteItem(props.index, true);
+    } else if (!completeItem && props.completed) {
+      props.handleCompleteItem(props.index, false);
     }
   }
 
@@ -94,10 +94,10 @@ export default function Item (props) {
           aria-controls={`item${props.index}-content`}
           id={`item${props.index}-header"`}
         >
-          <Typography className={classes.heading} noWrap>{props.title}</Typography>
-          {props.priority >= 1 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
-          {props.priority >= 2 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
-          {props.priority === 3 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          <Typography className={classes.heading} noWrap style={{ textDecoration : props.completed ? 'line-through' : 'none' }} >{props.title}</Typography>
+          {(props.priority >= 1 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          {(props.priority >= 2 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
+          {(props.priority === 3 && !props.completed) && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
         </AccordionSummary>
         <AccordionDetails>
           <Grid container direction="row">
@@ -125,7 +125,7 @@ export default function Item (props) {
       </Accordion>
       <DeleteItemDialog open={openDeleteItemModal} setClose={handleCloseDeleteItemModal} handleDeleteConfirmation={handleDeleteConfirmation} title={props.title}/>
       <EditItemDialog open={openEditItemModal} setClose={handleCloseEditItemModal} handleEditConfirmation={handleEditConfirmation} title={props.title} notes={props.notes} priority={props.priority}/>
-      <CompleteItemDialog open={openCompleteItemModal} setClose={handleCloseCompleteItemModal} handleCompleteItemConfirmation={handleCompleteItemConfirmation} title={props.title}/>
+      <CompleteItemDialog open={openCompleteItemModal} setClose={handleCloseCompleteItemModal} handleCompleteItemConfirmation={handleCompleteItemConfirmation} title={props.title} completed={props.completed}/>
     </div>
   )
 }

@@ -43,7 +43,8 @@ export default function NewItemDialog(props) {
       let newItem = {
         title: itemTitle,
         priority: itemPriority,
-        notes: itemNotes
+        notes: itemNotes,
+        completed: false
       }
       props.addItem(newItem)
       handleReset();
