@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function NewItemDialog(props) {
+export default function DeleteItemDialog(props) {
   const classes = useStyles();
 
   const handleClose = () => {

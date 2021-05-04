@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteItemDialog from './DeleteItemDialog';
+import EditItemDialog from './EditItemDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Item (props) {
   const [openDeleteItemModal, setOpenDeleteItemModal] = useState(false);
+  const [openEditItemModal, setOpenEditItemModal] = useState(false);
   const classes = useStyles();
   const getPriorityColor = () => {
     if (props.priority <= 2) {
@@ -51,6 +53,18 @@ export default function Item (props) {
 
   const handleCloseDeleteItemModal = () => {
     setOpenDeleteItemModal(false);
+  }
+
+  const handleEditConfirmation = (title, notes, priority) => {
+    //props.editItem
+    console.log(`The new item will be ${title}(${priority}): ${notes}`);
+  }
+
+  const handleOpenEditItemModal = () => {
+    setOpenEditItemModal(true);
+  }
+  const handleCloseEditItemModal = () => {
+    setOpenEditItemModal(false);
   }
 
   return (
@@ -80,7 +94,7 @@ export default function Item (props) {
               <Button color="secondary" variant="contained" className={classes.button} style={{ background: "#d50000" }} size="large" onClick={handleOpenDeleteItemModal}>
                 Delete Item
               </Button>
-              <Button color="primary" variant="contained" className={classes.button} size="large">
+              <Button color="primary" variant="contained" className={classes.button} size="large" onClick={handleOpenEditItemModal}>
                 Edit Item
               </Button>
               <Button color="primary" variant="contained" className={classes.button} style={{ background: green[500] }} size="large">
@@ -91,6 +105,7 @@ export default function Item (props) {
         </AccordionDetails>
       </Accordion>
       <DeleteItemDialog open={openDeleteItemModal} setClose={handleCloseDeleteItemModal} handleDeleteConfirmation={handleDeleteConfirmation} title={props.title}/>
+      <EditItemDialog open={openEditItemModal} setClose={handleCloseEditItemModal} handleEditConfirmation={handleEditConfirmation} title={props.title} notes={props.notes} priority={props.priority}/>
     </div>
   )
 }
