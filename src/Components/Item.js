@@ -47,7 +47,7 @@ export default function Item (props) {
           <Typography>
             {props.notes.length === 0
             ? <div>No notes available for this item</div>
-            : props.notes
+            : <div>{props.notes}</div>
             }
           </Typography>
         </AccordionDetails>
