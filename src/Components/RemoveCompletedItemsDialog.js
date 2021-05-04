@@ -39,7 +39,7 @@ export default function RemoveCompletedItemsDialog(props) {
             Cancel
           </Button>
           <Button onClick={handleRemoveCompleted} style={{ background: "#d50000", color: "white"}} variant="contained">
-            Remove Completed Items
+            Remove
           </Button>
         </DialogActions>
       </Dialog>
