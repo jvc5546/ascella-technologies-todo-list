@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
+    textAlign: 'center'
   },
   toolbar: {
     minHeight: 128,
