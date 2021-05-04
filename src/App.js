@@ -44,12 +44,17 @@ function App() {
     setItemList(newList);
   }
 
+  const handleEditItem = (index, editedItem) => {
+    itemList[index] = editedItem;
+    setExpanded(false);
+  }
+
   return (
     <div className="App">
       <AppBar/>
       {itemList.length === 0
         ? <div>There are currently no items on the TODO list.</div>
-        : itemList.map((item, index) => <Item key={index} index={index} title={item.title} priority={item.priority} notes={item.notes} handlePanelChange={handlePanelChange} expanded={expanded} handleDelete={handleDeleteItem}/>)
+        : itemList.map((item, index) => <Item key={index} index={index} title={item.title} priority={item.priority} notes={item.notes} handlePanelChange={handlePanelChange} expanded={expanded} handleDelete={handleDeleteItem} handleEditItem={handleEditItem}/>)
       }
       <Button onClick={handleOpenNewItemModal}
         variant="contained"

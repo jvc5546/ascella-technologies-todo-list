@@ -55,9 +55,8 @@ export default function Item (props) {
     setOpenDeleteItemModal(false);
   }
 
-  const handleEditConfirmation = (title, notes, priority) => {
-    //props.editItem
-    console.log(`The new item will be ${title}(${priority}): ${notes}`);
+  const handleEditConfirmation = (editedItem) => {
+    props.handleEditItem(props.index, editedItem);
   }
 
   const handleOpenEditItemModal = () => {

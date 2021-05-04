@@ -45,7 +45,8 @@ export default function EditItemDialog(props) {
     if(!itemTitle || /^\s*$/.test(itemTitle)) {
       setItemTitleError(true);
     } else {
-      props.handleEditConfirmation(itemTitle, itemPriority, itemNotes);
+      let editedItem = {title: itemTitle, notes: itemNotes, priority: itemPriority}
+      props.handleEditConfirmation(editedItem);
       handleClose();
     }
   }
