@@ -37,7 +37,7 @@ function App() {
       <AppBar/>
       {itemList.length === 0
         ? <div>There are currently no items on the TODO list.</div>
-        : itemList.map((item, index) => <Item key={index}/>)
+        : itemList.map((item, index) => <Item key={index} title={item.title} priority={item.priority} notes={item.notes}/>)
       }
       <Button onClick={handleOpenNewItemModal}
         variant="contained"
