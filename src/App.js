@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const [openNewItemModal, setOpenNewItemModal] = useState(false);
   const [openRemoveCompletedModal, setOpenRemoveCompletedModal] = useState(false);
-  const [itemList, setItemList] = useState([]);
+  const [itemList, setItemList] = useState([{title: `Pick up my dog's food before I run out`, notes: `she can only eat the Salmon flavor from Costco`, priority: 2, completed: false}, {title: `Call parents`, notes: `Call before work`, priority: 1, completed: true}, {title: `Submit Ascella Technologies coding challenge`, notes: `React + MaterialUI. Use create react app repository for the initial code base`, priority: 3, completed: false}]);
   const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
 
