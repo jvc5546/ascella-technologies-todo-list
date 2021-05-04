@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     alignSelf: 'flex-end',
-    fontSize: 60,
+    [theme.breakpoints.up('md')]: {fontSize: 60},
     fontWeight: "bold"
   },
 }));
