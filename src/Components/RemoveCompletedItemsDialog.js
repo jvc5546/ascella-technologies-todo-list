@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,14 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { grey } from '@material-ui/core/colors';
 
-const useStyles = makeStyles((theme) => ({
-  itemTitle: {
-    fontWeight: "bold"
-  }
-}));
-
 export default function RemoveCompletedItemsDialog(props) {
-  const classes = useStyles();
 
   const handleClose = () => {
     props.setClose();
