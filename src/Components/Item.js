@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     [theme.breakpoints.up('md')]: {fontSize: 48},
     fontWeight: theme.typography.fontWeightBold,
+    [theme.breakpoints.down('sm')] : {width: 200}
   },
   alertIconts:{
     [theme.breakpoints.up('md')]: {fontSize: "large"}
@@ -60,7 +61,7 @@ export default function Item (props) {
           aria-controls={`item${props.index}-content`}
           id={`item${props.index}-header"`}
         >
-          <Typography className={classes.heading}>{props.title}</Typography>
+          <Typography className={classes.heading} noWrap>{props.title}</Typography>
           {props.priority >= 1 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
           {props.priority >= 2 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
           {props.priority === 3 && <PriorityHighIcon color={getPriorityColor()} className={classes.alertIconts}/>}
