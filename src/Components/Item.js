@@ -11,6 +11,7 @@ import { Grid } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import DeleteItemDialog from './DeleteItemDialog';
 import EditItemDialog from './EditItemDialog';
+import CompleteItemDialog from './CompleteItemDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Item (props) {
   const [openDeleteItemModal, setOpenDeleteItemModal] = useState(false);
   const [openEditItemModal, setOpenEditItemModal] = useState(false);
+  const [openCompleteItemModal, setOpenCompleteItemModal] = useState(false);
+
   const classes = useStyles();
+
   const getPriorityColor = () => {
     if (props.priority <= 2) {
         return 'disabled';
@@ -66,6 +70,22 @@ export default function Item (props) {
     setOpenEditItemModal(false);
   }
 
+  const handleCompleteItemConfirmation = (completeItem) => {
+    if(completeItem) {
+      //Set state to strike through
+    } else {
+      //Set state to remove strike through
+    }
+  }
+
+  const handleOpenCompleteItemModal = () => {
+    setOpenCompleteItemModal(true);
+  }
+
+  const handleCloseCompleteItemModal = () => {
+    setOpenCompleteItemModal(false);
+  }
+
   return (
     <div>
       <Accordion expanded={props.expanded === `item${props.index}`} onChange={props.handlePanelChange(`item${props.index}`)}>
@@ -96,7 +116,7 @@ export default function Item (props) {
               <Button color="primary" variant="contained" className={classes.button} size="large" onClick={handleOpenEditItemModal}>
                 Edit Item
               </Button>
-              <Button color="primary" variant="contained" className={classes.button} style={{ background: green[500] }} size="large">
+              <Button color="primary" variant="contained" className={classes.button} style={{ background: green[500] }} size="large" onClick={handleOpenCompleteItemModal}>
                 Complete
               </Button>
             </Grid>
@@ -105,6 +125,7 @@ export default function Item (props) {
       </Accordion>
       <DeleteItemDialog open={openDeleteItemModal} setClose={handleCloseDeleteItemModal} handleDeleteConfirmation={handleDeleteConfirmation} title={props.title}/>
       <EditItemDialog open={openEditItemModal} setClose={handleCloseEditItemModal} handleEditConfirmation={handleEditConfirmation} title={props.title} notes={props.notes} priority={props.priority}/>
+      <CompleteItemDialog open={openCompleteItemModal} setClose={handleCloseCompleteItemModal} handleCompleteItemConfirmation={handleCompleteItemConfirmation} title={props.title}/>
     </div>
   )
 }
