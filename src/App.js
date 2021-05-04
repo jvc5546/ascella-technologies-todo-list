@@ -38,7 +38,10 @@ function App() {
   }
 
   const handleDeleteItem = (index) => {
-    console.log(`Deleting item ${index}...`)
+    let newList = [...itemList];
+    newList.splice(index, 1);
+    setExpanded(false);
+    setItemList(newList);
   }
 
   return (
