@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -24,9 +24,36 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewItemDialog(props) {
   const classes = useStyles();
+  const [itemTitle, setItemTitle] = useState("");
+  const [itemTitleError, setItemTitleError] = useState(false);
+  const [itemPriority, setItemPriority] = useState(0);
+  const [itemNotes, setItemNotes] = useState("");
+
   const handleClose = () => {
     props.setClose();
   };
+
+  const handleAddNewItem = () => {
+
+    if(!itemTitle || /^\s*$/.test(itemTitle)) {
+      setItemTitleError(true);
+    } else {
+      //Call Apps function to save a new item
+      props.setClose();
+    }
+  }
+
+  const handleTitleChange = (e) => {
+    setItemTitle(e.target.value);
+  }
+
+  const handlePriorityChange = (e) => {
+    setItemPriority(e.target.value);
+  }
+
+  const handleNotesChange = (e) => {
+    setItemNotes(e.target.value);
+  }
 
   return (
     <div>
@@ -36,7 +63,9 @@ export default function NewItemDialog(props) {
           <DialogContentText>
             To add a new item, please enter the new item's information below. The item title is required, all other fields are optional.
           </DialogContentText>
-          <TextField
+          <TextField onChange={handleTitleChange}
+            error={itemTitleError}
+            autoComplete='off'
             autoFocus
             margin="dense"
             id="title"
@@ -49,8 +78,8 @@ export default function NewItemDialog(props) {
             <Select
               labelId="prioritySelectLabel"
               id="prioritySelect"
-              // value={age}
-              // onChange={handleChange}
+              defaultValue={0}
+              onChange={handlePriorityChange}
               label="Priority"
             >
               <MenuItem value={0}>
@@ -61,7 +90,8 @@ export default function NewItemDialog(props) {
               <MenuItem value={3}>High</MenuItem>
             </Select>
           </FormControl>
-          <TextField
+          <TextField onChange={handleNotesChange}
+            autoComplete='off'
             id="notes"
             label="Item Notes"
             multiline
@@ -75,7 +105,7 @@ export default function NewItemDialog(props) {
           <Button onClick={handleClose} color="secondary" variant="contained">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" variant="contained">
+          <Button onClick={handleAddNewItem} color="primary" variant="contained">
             Add New Item
           </Button>
         </DialogActions>
